@@ -9,3 +9,6 @@ dist
 npm-debug.log
 coverage
 /logs
+/docker-compose.yml
+/.env
+/data

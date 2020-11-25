@@ -1,0 +1,23 @@
+version: "3.2"
+services:
+  ansible-playable:
+    build:
+      context: '.'
+    restart: always
+    depends_on:
+      - mongo
+    volumes:
+      - /opt/ansible-projects:/opt/ansible-projects
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      EMAIL_USER_ADMIN: "${EMAIL_USER_ADMIN}"
+      PASSWORD_ADMIN: "${PASSWORD_ADMIN}"
+    container_name: playable-web
+
+  mongo:
+    image: mongo:3.6
+    container_name: playable-mongo
+    restart: always
+    volumes:
+      - ./data/db:/data/db
